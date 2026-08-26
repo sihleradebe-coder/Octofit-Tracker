@@ -13,8 +13,11 @@ export function responseItems(payload) {
   return []
 }
 
-export async function fetchCollection(component) {
-  const response = await fetch(`${apiBaseUrl}/api/${component}/`)
-  if (!response.ok) throw new Error(`Unable to load ${component}`)
+export async function fetchCollection(componentOrUrl) {
+  const url = componentOrUrl.startsWith('http')
+    ? componentOrUrl
+    : `${apiBaseUrl}/api/${componentOrUrl}/`
+  const response = await fetch(url)
+  if (!response.ok) throw new Error(`Unable to load ${componentOrUrl}`)
   return responseItems(await response.json())
 }

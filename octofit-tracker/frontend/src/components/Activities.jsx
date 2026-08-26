@@ -2,12 +2,13 @@ import { useEffect, useState } from 'react'
 import { fetchCollection } from '../api.js'
 
 function Activities() {
+  const endpoint = import.meta.env.VITE_CODESPACE_NAME ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities/` : 'http://localhost:8000/api/activities/'
   const [activities, setActivities] = useState([])
   const [error, setError] = useState('')
 
   useEffect(() => {
-    fetchCollection('activities').then(setActivities).catch((loadError) => setError(loadError.message))
-  }, [])
+    fetchCollection(endpoint).then(setActivities).catch((loadError) => setError(loadError.message))
+  }, [endpoint])
 
   return <DataView title="Activities" description="Recent movement across your teams." columns={['Type', 'Duration', 'Date']} rows={activities.map((activity) => [activity.type || 'Training', `${activity.duration || 0} min`, formatDate(activity.date)])} error={error} />
 }
