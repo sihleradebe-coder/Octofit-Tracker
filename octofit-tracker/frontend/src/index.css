@@ -109,3 +109,7 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+* { box-sizing: border-box; }
+body { min-width: 320px; background: #f4f1e8; }
+button, a { font: inherit; }

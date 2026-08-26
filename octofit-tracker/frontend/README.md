@@ -1,4 +1,14 @@
-# React + Vite
+# OctoFit Tracker frontend
+
+The frontend expects the backend API on port `8000`. In Codespaces, create
+`octofit-tracker/frontend/.env.local` with:
+
+```env
+VITE_CODESPACE_NAME=your-codespace-name
+```
+
+`VITE_CODESPACE_NAME` must be defined when the frontend is using a Codespaces
+backend. If it is unset, the app safely falls back to `http://localhost:8000`.
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
